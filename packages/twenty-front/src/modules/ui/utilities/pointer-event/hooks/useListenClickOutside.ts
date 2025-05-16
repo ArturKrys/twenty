@@ -190,6 +190,11 @@ export const useListenClickOutside = <T extends Element>({
           }
 
           if (shouldTrigger) {
+            const tgt = event.target as HTMLElement;
+            if (tgt.closest('a') != null) {
+              event.preventDefault();
+              event.stopImmediatePropagation();
+            }
             callback(event);
           }
         }
